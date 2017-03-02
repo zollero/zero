@@ -1,5 +1,5 @@
 {
-	"name": "todo app",
+	"name": "Todo",
 	"version": "1.0",
 	"manifest_version": 2,
 	"description": "Chrome extension: Todo App",
@@ -9,7 +9,7 @@
 		"default_popup": "popup.html"
 	},
 	"permissions": [
-        "http://hq.sinajs.cn/list=*"
+        "http://hq.sinajs.cn/list=*",
         "tabs",
         "activeTab",
         "notifications",

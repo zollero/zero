@@ -1,0 +1,97 @@
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+ul, li {
+	list-style: none;
+}
+
+body {
+	width: 300px;
+	/*border-radius: 10px;*/
+	overflow: hidden;
+	font-size: 16px;
+	margin-right: -17px;
+}
+
+.container {
+	min-height: 400px;
+	max-height: 600px;
+	margin-right: 17px;
+	/*background-color: #ddd;*/
+}
+
+.banner {
+	display: flex;
+	height: 45px;
+	padding: 10px 15px;
+	background-color: #54678c;
+}
+.banner-btn {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.banner-btn.left-btn {
+	background: url(../icons/left_off.svg) no-repeat center center;
+}
+.banner-btn.right-btn {
+	background: url(../icons/right_off.svg) no-repeat center center;
+}
+.banner .center {
+	flex: 1;
+}
+
+.list-container {
+	/*padding: 10px;*/
+	/*background-color: #f1f1f1;*/
+	/*background: url(../icons/select.svg) no-repeat center center;*/
+}
+
+.list-container .list {
+	display: flex;
+	border-bottom: 1px solid #dcdfe4;
+	height: 30px;
+	line-height: 30px;
+}
+.list-container .list .action {
+	width: 40px;
+	border-right: 1px solid #f8dbdb;
+	cursor: pointer;
+}
+.list-container .list.done .action {
+	background: url(../icons/select.svg) no-repeat center center;
+}
+.list-container .list.warning .action {
+	background: url(../icons/warning.svg) no-repeat center center;
+}
+
+.list-container .list .ring {
+	width: 30px;
+	cursor: pointer;
+}
+.list-container .list.on .ring {
+	background: url(../icons/remind_on.svg) no-repeat center center;
+}
+.list-container .list.off .ring {
+	background: url(../icons/remind_off.svg) no-repeat center center;
+}
+
+.list-container .list .content {
+	flex: 1;
+	padding: 0 10px;
+	color: #90908e;
+}
+.list-container .list.done .content {
+	text-decoration: line-through;
+}
+.list-container .list.warning .content {
+	color: #e1635a;
+}
+
+
+
