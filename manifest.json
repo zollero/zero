@@ -1,7 +1,7 @@
 {
 	"name": "todo app",
 	"version": "1.0",
-	"mainfest_version": 2,
+	"manifest_version": 2,
 	"description": "Chrome extension: Todo App",
 	"browser_action": {
 		"default_icon": "images/icon.jpeg",
@@ -9,8 +9,12 @@
 		"default_popup": "popup.html"
 	},
 	"permissions": [
-		"http://*/"
-	],
+        "http://hq.sinajs.cn/list=*"
+        "tabs",
+        "activeTab",
+        "notifications",
+        "storage"
+    ],
 	"options_page": "options.html",
 	"background": {
 		"scripts": ["js/background.js"]
