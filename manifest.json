@@ -4,7 +4,7 @@
 	"manifest_version": 2,
 	"description": "Chrome extension: Todo App",
 	"browser_action": {
-		"default_icon": "images/icon.jpeg",
+		"default_icon": "images/icon.png",
 		"default_title": "Todo List",
 		"default_popup": "popup.html"
 	},

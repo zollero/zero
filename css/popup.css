@@ -9,88 +9,135 @@ ul, li {
 	list-style: none;
 }
 
+input:focus {
+	outline-offset: 0;
+	outline: none;
+}
+
 body {
-	width: 300px;
-	/*border-radius: 10px;*/
+	width: 250px;
 	overflow: hidden;
-	font-size: 16px;
+	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
+	font-size: 14px;
 	margin-right: -17px;
 }
 
 .container {
-	min-height: 400px;
-	max-height: 600px;
+	display: flex;
+	flex-direction: column;
+	height: 400px;
+	/*min-height: 400px;
+	max-height: 600px;*/
 	margin-right: 17px;
-	/*background-color: #ddd;*/
 }
 
+/* banner */
 .banner {
 	display: flex;
-	height: 45px;
-	padding: 10px 15px;
+	height: 35px;
+	padding: 10px 10px;
+	margin-bottom: 2px;
 	background-color: #54678c;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+    box-shadow: 0 1px 4px 0px #23262f;
 }
 .banner-btn {
-	width: 25px;
-	height: 25px;
+	width: 15px;
+	height: 15px;
 	border-radius: 50%;
-	cursor: pointer;
 }
-.banner-btn.left-btn {
-	background: url(../icons/left_off.svg) no-repeat center center;
-}
-.banner-btn.right-btn {
-	background: url(../icons/right_off.svg) no-repeat center center;
-}
+
 .banner .center {
 	flex: 1;
+	color: #fff;
+	text-align: center;
+	padding: 0 10px;
 }
 
+/* list container */
 .list-container {
-	/*padding: 10px;*/
-	/*background-color: #f1f1f1;*/
-	/*background: url(../icons/select.svg) no-repeat center center;*/
+	flex: 1;
+	overflow-y: auto;
+	color: #4e4e4c;
+	background-color: #f6f6f6;
 }
-
-.list-container .list {
+.list-container .list,
+.input-container {
 	display: flex;
 	border-bottom: 1px solid #dcdfe4;
-	height: 30px;
-	line-height: 30px;
+	height: 40px;
+	line-height: 40px;
 }
-.list-container .list .action {
-	width: 40px;
-	border-right: 1px solid #f8dbdb;
-	cursor: pointer;
+.list-container .list:last-child {
+	border-bottom: none;
 }
-.list-container .list.done .action {
-	background: url(../icons/select.svg) no-repeat center center;
-}
-.list-container .list.warning .action {
-	background: url(../icons/warning.svg) no-repeat center center;
-}
-
-.list-container .list .ring {
+.list-container .list .action,
+.input-container .action,
+.list-container .list .ring,
+.input-container .ring {
 	width: 30px;
-	cursor: pointer;
+	text-align: center;
 }
-.list-container .list.on .ring {
-	background: url(../icons/remind_on.svg) no-repeat center center;
+.list-container .list .action,
+.input-container .action {
+	border-right: 1px solid #f8dbdb;
 }
-.list-container .list.off .ring {
-	background: url(../icons/remind_off.svg) no-repeat center center;
-}
-
-.list-container .list .content {
+.list-container .list .content,
+.input-container .content {
 	flex: 1;
 	padding: 0 10px;
 	color: #90908e;
+	word-break: keep-all;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .list-container .list.done .content {
 	text-decoration: line-through;
 }
 .list-container .list.warning .content {
 	color: #e1635a;
+}
+
+/* input container */
+.input-container {
+	border-top: 1px solid #dcdfe4;
+	box-shadow: 0 -1px 2px #ddd;
+}
+.input-container input {
+    display: inline-block;
+    width: 100%;
+    height: 25px;
+    padding: 0 5px;
+    border: none;
+    background-color: #e6e6e6;
+    font-style: italic;
+    box-shadow: 0 1px 1px #a7a7a7 inset;
+}
+
+
+/* 自定义-webkit-浏览器的右侧滚动条样式
+定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
+::-webkit-scrollbar {
+  width: 2px;
+  background-color: #f6f6f6;
+}
+/* 定义滚动条轨道 内阴影+圆角 */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #f6f6f6;
+}
+/* 定义滑块 内阴影+圆角 */
+::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #5a6985;
+}
+/* 修改input placeholder字体颜色 */
+::-webkit-input-placeholder { /* WebKit browsers */
+　　color: #999;
 }
 
 
