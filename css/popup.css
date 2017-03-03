@@ -29,18 +29,20 @@ body {
 /* banner */
 .banner {
 	display: flex;
-	height: 35px;
-	padding: 10px 10px;
+	height: 40px;
+	line-height: 30px;
+	padding: 5px 10px;
 	margin-bottom: 2px;
 	background-color: #54678c;
+    /*background: linear-gradient(#5f78a3,#5e76a1,#566a92,#52648c,#52648c,#52648c,#52648c,#52648c,#52648c,#52648c,#566a92,#5e76a1,#5f78a3);*/
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
     box-shadow: 0 1px 4px 0px #23262f;
 }
 .banner-btn {
-	width: 15px;
-	height: 15px;
-	border-radius: 50%;
+	/*width: 20px;*/
+	/*height: 20px;
+	border-radius: 50%;*/
 }
 
 .banner .center {
@@ -66,11 +68,6 @@ body {
 }
 .list-container .list:last-child {
 	border-bottom: none;
-}
-.list-container .list .ring,
-.input-container .ring {
-	width: 30px;
-	text-align: center;
 }
 .list-container .list .action,
 .input-container .action {
@@ -114,6 +111,12 @@ body {
 .list-container .list.undone .action .icon-container .icon {
 	background-color: #fed2d2;
     box-shadow: inset 0px 0px 2px 2px #b35d5d, 0px 0px 0px 1px #b35d5d;
+}
+
+
+.list-container .list .notice {
+	width: 30px;
+	text-align: center;
 }
 
 

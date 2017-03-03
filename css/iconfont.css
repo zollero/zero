@@ -24,9 +24,9 @@
 
 .icon-notice:before { content: "\e709"; color: #465777; }
 
-.icon-left:before { content: "\e799"; color: #3b4b7b; }
+.icon-left:before { content: "\e799"; color: #fefefe; font-size: 25px; }
 
-.icon-right:before { content: "\e65a"; color: #3b4b7b; }
+.icon-right:before { content: "\e65a"; color: #fefefe; font-size: 25px; }
 
 .icon-delete:before { content: "\e7ed"; }
 
