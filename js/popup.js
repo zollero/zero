@@ -45,6 +45,50 @@
 		}
 	}, false);
 
+	$listContainer.addEventListener('click', function(e) {
+		var target = e.target;
+		var $todoLi;
+		if(target.className === 'icon') {
+			$todoLi = target.parentElement.parentElement.parentElement;
+			var liClassList = $todoLi.classList;
+			if(liClassList.contains('on')) {
+				liClassList.remove('on');
+				liClassList.add('done');
+			} else if (liClassList.contains('done')) {
+				liClassList.remove('done');
+				liClassList.add('on');
+			} else if (liClassList.contains('undone')) {
+				liClassList.remove('undone');
+				liClassList.add('on');
+			} else {
+				//TODO
+				alert('something error')
+			}
+			//TODO change status
+		} else if(target.className === 'content') {
+			$todoLi = target.parentElement;
+			//Toggle actions area
+			var $actionsEle = $todoLi.parentElement;
+			if($actionsEle.children[1].style.display === '' || 
+				$actionsEle.children[1].style.display === 'none') {
+				$actionsEle.children[1].style.display = 'flex';
+			} else {
+				$actionsEle.children[1].style.display = 'none';
+			}
+			// if($todoLi.classList.contains('on')) {
+			// 	var actionHtml = '<div class=\"actions\">' +
+			// 						'<div class=\"action\">' +
+			// 							'<i class=\"iconfont icon-notice\"></i>' +
+			// 						'</div>' +
+			// 						'<div class=\"action\">' +
+			// 							'<i class=\"iconfont icon-delete\"></i>' +
+			// 						'</div>' +
+			// 					'</div>';
+			// 	$actionsEle.append(actionHtml);
+			// }
+		}
+	}, false);
+
 	function saveNewTodo(newTodo) {
 		var todos = JSON.parse(localStorage.getItem('todos'));
 		if (!todos) todos = [];
