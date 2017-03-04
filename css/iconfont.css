@@ -15,6 +15,16 @@
  	-moz-osx-font-smoothing: grayscale;
  	cursor: pointer;
 }
+.iconfont:active {
+	opacity: .7;
+}
+.iconfont.disabled {
+	opacity: .3;
+	cursor: default;
+}
+.iconfont.disabled:active {
+	opacity: .3;
+}
 
 .icon-check:before { content: "\e656"; color: #4ec34a; }
 

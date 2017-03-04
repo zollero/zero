@@ -59,18 +59,20 @@ body {
 	color: #4e4e4c;
 	background-color: #f6f6f6;
 }
-.list-container .list,
+.list-container .li {
+	border-bottom: 1px solid #dcdfe4;
+}
+.list-container .li .list,
 .input-container {
 	display: flex;
-	border-bottom: 1px solid #dcdfe4;
 	height: 41px;
 	line-height: 41px;
 }
-.list-container .list:last-child {
+.list-container .li .list:last-child {
 	border-bottom: none;
 }
-.list-container .list .action,
-.input-container .action {
+.list-container .li .list .status,
+.input-container .status {
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -78,8 +80,8 @@ body {
     padding: 7px;
 	border-right: 1px solid #f8dbdb;
 }
-.list-container .list .action .icon-container,
-.input-container .action .icon-container {
+.list-container .li .list .status .icon-container,
+.input-container .status .icon-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +93,7 @@ body {
     box-shadow: inset 0 1px 1px 1px #c6c6c6;
 }
 
-.action .icon-container .icon {
+.status .icon-container .icon {
 	display: inline-block;
 	width: 12px;
 	height: 12px;
@@ -103,12 +105,12 @@ body {
 	cursor: pointer;
     box-shadow: inset 0px 0px 2px 2px #bfbfbf, 0px 0px 0px 1px #bfbfbf;
 }
-.list-container .list.done .action .icon-container .icon {
+.list-container .list.done .status .icon-container .icon {
 	color: #4d8749;
 	background-color: #d3f7cc;
     box-shadow: inset 0px 0px 2px 2px #4d8749, 0px 0px 0px 1px #4d8749;
 }
-.list-container .list.undone .action .icon-container .icon {
+.list-container .list.undone .status .icon-container .icon {
 	background-color: #fed2d2;
     box-shadow: inset 0px 0px 2px 2px #b35d5d, 0px 0px 0px 1px #b35d5d;
 }
@@ -130,6 +132,9 @@ body {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.list-container .list .content {
+	cursor: pointer;
+}
 .list-container .list.done .content {
 	text-decoration: line-through;
 }
@@ -137,11 +142,34 @@ body {
 	color: #e1635a;
 }
 
+/* list actions */
+.list-container .li .actions {
+	display: flex;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #ddd;
+	box-shadow: 0px 2px 8px 1px #9E9E9E inset;
+}
+.list-container .li .actions .action {
+	position: relative;
+	flex: 1;
+}
+.list-container .li .actions .action:first-child:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	width: 1px;
+	top: 5px;
+	bottom: 5px;
+	background-color: #727f97;
+}
+
 /* input container */
-.input-container .action .icon-container  {
+.input-container .status .icon-container  {
 	box-shadow: inset 0 1px 1px 0px #d7d7d7;
 }
-.input-container .action .icon-container .icon {
+.input-container .status .icon-container .icon {
     box-shadow: 0px 0px 1px 0px #cbcbcb;
     background-color: #f1f1f1;
     cursor: default;
