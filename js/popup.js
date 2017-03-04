@@ -131,9 +131,16 @@
 						'<div class=\"content\" title=\"' + list.message + '\">' +
 							list.message +
 						'</div>' +
-						'<div class=\"notice\">' +
-							'<i class=\"iconfont ' + (list.setNotice ? '' : 'disabled') + ' icon-notice\"></i>' +
-						'</div>' +
+						(function() {
+							if(list.setNotice) {
+								return '<div class=\"notice\">' +
+											'<i class=\"iconfont ' + (list.setNotice ? '' : 'disabled') + ' icon-notice\"></i>' +
+										'</div>';
+							} else {
+								return '';
+							}
+						})()
+						+
 					'</div>' +
 					'<div class=\"actions\">' +
 						'<div class=\"action\">' +
