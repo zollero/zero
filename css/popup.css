@@ -20,6 +20,10 @@ body {
 	font-size: 14px;
 }
 
+.hidden {
+	display: none;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -59,14 +63,12 @@ body {
 	color: #4e4e4c;
 	background-color: #f6f6f6;
 }
-.list-container .li {
-	border-bottom: 1px solid #dcdfe4;
-}
 .list-container .li .list,
 .input-container {
 	display: flex;
 	height: 41px;
 	line-height: 41px;
+	border-bottom: 1px solid #dcdfe4;
 }
 .list-container .li .list:last-child {
 	border-bottom: none;
@@ -140,6 +142,18 @@ body {
 }
 .list-container .list.undone .content {
 	color: #e1635a;
+}
+
+/* tip */
+.list-container .li .tip {
+	height: 30px;
+    line-height: 30px;
+    text-align: center;    
+    margin-top: 10px;
+    border-top: 1px solid #dcdfe4;
+    border-bottom: 1px solid #dcdfe4;
+    font-style: italic;
+    color: #e1635a;
 }
 
 /* list actions */
