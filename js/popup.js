@@ -1,3 +1,5 @@
+
+
 /*!
  * z-todo  - https://github.com/zollero/todo-chrome
  * Version - 1.0.0
@@ -9,157 +11,134 @@
 
 (function(window, document) {
 	
-	// var todoList = [{
-	// 	status: 'on',	//on, done, undone
-	// 	message: 'Call honey',
-	// 	setNotice: true,	//false, true
-	// 	noticeTime: '2017-03-05 10:20'
-	// }, {
-	// 	status: 'done',
-	// 	message: 'Write something',
-	// 	setNotice: false
-	// }, {
-	// 	status: 'undone',
-	// 	message: 'Study python',
-	// 	setNotice: true,
-	// 	noticeTime: '2017-02-01 10:20',
-	// }];
+	'use strict';
 
-	var $listContainer = document.getElementById('todo-list');
-	var $addTaskInput = document.getElementById('add-task');
+	var todoApp = new Vue({
+		el: '#todo-list-container',
+		data: {
+			today: '',
+			currentDate: '',
+			todos: [],
+			inputVal: ''
+		},
+		computed: {
+			selectedDate: function() {
+				var date = this.getCurrentDate();
+				var day = date.getDay();
 
-
-	$addTaskInput.addEventListener('keyup', function(e) {
-		var value = e.target.value;
-		if(e.keyCode === 13 && value.trim().length > 0) {
-			console.log('Type enter');
-			var newTodo = {
-				status: 'on',
-				message: value,
-				setNotice: false,
-				noticeTime: ''
-			};
-			e.target.value = '';
-			saveNewTodo(newTodo);
-			refreshList();
-		}
-	}, false);
-
-	$listContainer.addEventListener('click', function(e) {
-		var target = e.target;
-		var $todoLi;
-		if(target.className === 'icon') {
-			$todoLi = target.parentElement.parentElement.parentElement;
-			var liClassList = $todoLi.classList;
-			if(liClassList.contains('on')) {
-				liClassList.remove('on');
-				liClassList.add('done');
-			} else if (liClassList.contains('done')) {
-				liClassList.remove('done');
-				liClassList.add('on');
-			} else if (liClassList.contains('undone')) {
-				liClassList.remove('undone');
-				liClassList.add('on');
-			} else {
-				//TODO
-				alert('something error')
+				switch(day) {
+					case 0:
+						day = 'Sun';
+						break;
+					case 1:
+						day = 'Mon.';
+						break;
+					case 2:
+						day = 'Tue.';
+						break;
+					case 3:
+						day = 'Wed.';
+						break;
+					case 4:
+						day = 'Thu.';
+						break;
+					case 5:
+						day = 'Fri.';
+						break;
+					case 6:
+						day = 'Sat.';
+						break;
+					default:
+						break;
+				}
+				return '<b>' + day + '</b>' + ' ' + this.currentDate;
 			}
-			//TODO change status
-		} else if(target.className === 'content') {
-			$todoLi = target.parentElement;
-			//Toggle actions area
-			var $actionsEle = $todoLi.parentElement;
-			if($actionsEle.children[1].style.display === '' || 
-				$actionsEle.children[1].style.display === 'none') {
-				$actionsEle.children[1].style.display = 'flex';
-			} else {
-				$actionsEle.children[1].style.display = 'none';
-			}
-			// if($todoLi.classList.contains('on')) {
-			// 	var actionHtml = '<div class=\"actions\">' +
-			// 						'<div class=\"action\">' +
-			// 							'<i class=\"iconfont icon-notice\"></i>' +
-			// 						'</div>' +
-			// 						'<div class=\"action\">' +
-			// 							'<i class=\"iconfont icon-delete\"></i>' +
-			// 						'</div>' +
-			// 					'</div>';
-			// 	$actionsEle.append(actionHtml);
-			// }
+		},
+		methods: {
+			getCurrentDate: function() {
+				if(this.currentDate.length === 0) return (new Date());
+				var dateInfo = this.currentDate.split('.');
+				var date = new Date(Number(dateInfo[0]), Number(dateInfo[1]) - 1, Number(dateInfo[2]));
+				return date;
+			},
+			formatDate: function(date) {
+				return date.getFullYear() + '.' + (date.getMonth() + 1) + '.' + date.getDate();
+			},
+			toggleAction: function(todo) {
+				todo.showAction = !todo.showAction;
+			},
+			initDate: function() {
+				var today = this.formatDate(new Date());			
+				this.today = today;
+				this.currentDate = today;
+			},
+			getTodods: function() {
+				var todos = JSON.parse(localStorage.getItem(this.currentDate));
+				if (todos !== null && todos.length) {
+					todos.map(function(v, i) {
+						v.showAction = false;
+						return v;
+					});
+				} else {
+					todos = [];
+				}
+				this.todos = todos;
+			},
+			init: function() {
+				this.initDate();
+				this.getTodods();
+			},
+			saveNewTodo: function(newTodo) {
+				var todos = JSON.parse(localStorage.getItem(this.currentDate));
+				if (!todos) todos = [];
+				todos.push(newTodo);
+				localStorage.setItem(this.currentDate, JSON.stringify(todos));
+			},
+			typeNewTask: function(e) {
+				var inputVal = this.inputVal.trim();
+				if(inputVal.length > 0) {
+					var newTodo = {
+						status: 'on',
+						message: inputVal,
+						setNotice: false,
+						noticeTime: ''
+					};
+					this.inputVal = '';
+					this.saveNewTodo(newTodo);
+					this.getTodods();
+				}
+			},
+			changeStatus: function(currentStatus, currentTodo) {
+				if (currentStatus === 'on') {
+					currentTodo.status = 'done';
+				} else if (currentStatus === 'done') {
+					currentTodo.status = 'on';
+				} else if (currentStatus === 'undone') {
+					currentTodo.status = 'on';
+				}
+				localStorage.setItem(this.currentDate, JSON.stringify(this.todos));
+			},
+			deleteTodo: function(index) {
+				this.todos.pop(index);
+				localStorage.setItem(this.currentDate, JSON.stringify(this.todos));
+			},
+			turnPre: function() {
+				var date = this.getCurrentDate();
+				var preDate = new Date(date.getTime() - 1000 * 60 * 60 * 24);
+				var currentDate = this.formatDate(preDate);
+				this.currentDate = currentDate;
+				this.getTodods();
+			},
+			turnPost: function() {
+				var date = this.getCurrentDate();
+				var preDate = new Date(date.getTime() + 1000 * 60 * 60 * 24);
+				var currentDate = this.formatDate(preDate);
+				this.currentDate = currentDate;
+				this.getTodods();
+			} 
 		}
-	}, false);
+	});
 
-	function saveNewTodo(newTodo) {
-		var todos = JSON.parse(localStorage.getItem('todos'));
-		if (!todos) todos = [];
-		todos.push(newTodo);
-		localStorage.setItem('todos', JSON.stringify(todos));
-	}
-
-	function refreshList() {
-		createLists(JSON.parse(localStorage.getItem('todos')));
-	}
-
-	refreshList();
-
-	function createLists(lists) {
-			var $todoListHtml = '';
-		if (lists && lists.length > 0) {
-			lists.forEach(function(v, i) {
-				$todoListHtml += createList(v);
-			});
-		} else {
-			//no todos
-			$todoListHtml += createTip();
-		}
-		$listContainer.innerHTML = $todoListHtml;
-	}
-
-	function createList(list) {
-		var listHtml = '';
-		if (typeof list === 'object') {
-			listHtml = listHtml + 
-				'<li class=\"li\">' + 
-					'<div class=\"list ' + list.status + '\">' +
-						'<div class=\"status\">' +
-							'<div class=\"icon-container\">' +
-								'<i class=\"icon\">' +
-									(list.status === 'done' ? '&#10003' : '') +
-								'</i>' +
-							'</div>' + 
-						'</div>' +
-						'<div class=\"content\" title=\"' + list.message + '\">' +
-							list.message +
-						'</div>' +
-						(function() {
-							if(list.setNotice) {
-								return '<div class=\"notice\">' +
-											'<i class=\"iconfont ' + (list.setNotice ? '' : 'disabled') + ' icon-notice\"></i>' +
-										'</div>';
-							} else {
-								return '';
-							}
-						})()
-						+
-					'</div>' +
-					'<div class=\"actions\">' +
-						'<div class=\"action\">' +
-							'<i class=\"iconfont icon-notice\"></i>' +
-						'</div>' +
-						'<div class=\"action\">' +
-							'<i class=\"iconfont icon-delete\"></i>' +
-						'</div>' +
-					'</div>' +
-				'</li>';
-		}
-		return listHtml;
-	}
-
-	function createTip(message) {
-		if (!message) message = 'There are no todos.';
-		return '<li class=\"li\">' +
-					'<div class=\"tip\">' + message + '</div>' +
-				'</li>';
-	}
+	todoApp.init();
 
 }(window, document));

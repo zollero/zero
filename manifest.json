@@ -16,8 +16,10 @@
         "tabs",
         "activeTab",
         "notifications",
-        "storage"
+        "storage",
+        "unlimitedStorage"
     ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 	"options_page": "options.html",
 	"background": {
 		"scripts": ["js/background.js"]
