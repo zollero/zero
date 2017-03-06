@@ -65,7 +65,7 @@ body {
 	background-color: #f6f6f6;
 }
 .list-container .li .list,
-.input-container {
+.input-container .li {
 	display: flex;
 	height: 41px;
 	line-height: 41px;
@@ -75,7 +75,7 @@ body {
 	border-bottom: none;
 }*/
 .list-container .li .list .status,
-.input-container .status {
+.input-container .li .status {
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -84,7 +84,7 @@ body {
 	border-right: 1px solid #f8dbdb;
 }
 .list-container .li .list .status .icon-container,
-.input-container .status .icon-container {
+.input-container .li .status .icon-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,7 +127,7 @@ body {
 
 
 .list-container .list .content,
-.input-container .content {
+.input-container .li .content {
 	flex: 1;
 	padding: 0 10px;
 	color: #90908e;
@@ -205,6 +205,35 @@ body {
     box-shadow: 0 1px 1px #a7a7a7 inset;
 }
 
+/* notice date select */
+.input-container .notice-select {
+	display: flex;
+	height: 30px;
+}
+.input-container .notice-select .notice-icon {
+    width: 41px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-right: 1px solid #f8dbdb;
+}
+.input-container .notice-select .date-select {
+    display: flex;
+    flex: 1;
+    padding: 5px 10px;
+    height: 30px;
+    line-height: 30px;
+}
+.input-container .notice-select .date-select select {
+	flex: 1;
+}
+.input-container .notice-select .date-select .time-split {
+	display: inline-block;
+	width: 5px;
+	height: 20px;
+	line-height: 20px;
+	margin: 0 5px;
+}
 
 /* 自定义-webkit-浏览器的右侧滚动条样式
 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */

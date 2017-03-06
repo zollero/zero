@@ -19,7 +19,11 @@
 			today: '',
 			currentDate: '',
 			todos: [],
-			inputVal: ''
+			inputVal: '',
+			showDateSelect: false,
+			setNotice: false,
+			noticeHour: 0,
+			noticeMin: 0
 		},
 		computed: {
 			selectedDate: function() {
@@ -96,14 +100,21 @@
 			},
 			typeNewTask: function(e) {
 				var inputVal = this.inputVal.trim();
-				if(inputVal.length > 0) {
+				var keyCode = e.keyCode;
+				this.showDateSelect = inputVal.length > 0;
+				if(inputVal.length > 0 && keyCode === 13) {
+					this.showDateSelect = true;
 					var newTodo = {
 						status: 'on',
 						message: inputVal,
-						setNotice: false,
-						noticeTime: ''
+						setNotice: this.setNotice,
+						noticeTime: this.setNotice ? this.noticeHour + ':' + this.noticeMin : ''
 					};
 					this.inputVal = '';
+					this.setNotice = false;
+					this.showDateSelect = false;
+					this.noticeHour = 0;
+					this.noticeMin = 0;
 					this.saveNewTodo(newTodo);
 					this.getTodods();
 				}
