@@ -28,7 +28,7 @@
 
 				switch(day) {
 					case 0:
-						day = 'Sun';
+						day = 'Sun.';
 						break;
 					case 1:
 						day = 'Mon.';
