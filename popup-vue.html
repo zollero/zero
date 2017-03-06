@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Todo List</title>
+	<link rel="stylesheet" href="./css/animate.min.css" />
+	<link rel="stylesheet" href="./css/iconfont.css" />
+	<link rel="stylesheet" href="./css/popup.css" />
+</head>
+<body>
+	<div class="container" id="todo-list-container">
+		<div class="banner">
+			<i class="iconfont icon-left"></i>
+			<div class="center" v-html="selectedDate"></div>
+			<i class="iconfont icon-right"></i>
+		</div>
+		<ul class="list-container" v-if="todos.length > 0">
+			<li class="li" v-for="(todo, index) in todos" :key="index">
+				<div class="list" v-bind:class="todo.status">
+					<div class="status">
+						<div class="icon-container">
+							<i class="icon" @click="changeStatus(todo.status, todo)">
+								{{ todo.status === 'done' ? '&#10003' : '' }}
+							</i>
+						</div>
+					</div>
+					<div class="content" :title="todo.message" @click="toggleAction(todo)">
+						{{ todo.message }}
+					</div>
+					<div class="notice">
+						<i class="iconfont icon-notice" :class="{ disabled: !todo.setNotice }"></i>
+					</div>
+				</div>
+				<transition name="custom-classes-transition"
+				    enter-active-class="animated swing"
+				    leave-active-class="animated flipOutY" >
+					<div class="actions" v-if="todo.showAction">
+						<div class="action">
+							<i class="iconfont icon-notice"></i>
+						</div>
+						<div class="action" @click="deleteTodo(index)">
+							<i class="iconfont icon-delete"></i>
+						</div>
+					</div>
+				</transition>
+			</li>
+		</ul>
+		<ul class="list-container" v-else>
+			<li class="li">
+				<div class="tip">There are no todos.</div>
+			</li>
+		</ul>
+		<div class="input-container">
+			<div class="status">
+				<div class="icon-container">
+					<i class="icon"></i>
+				</div>
+			</div>
+			<div class="content">
+				<input type="text" placeholder="Type a new task, then Enter" @keyup.13="typeNewTask" v-model="inputVal">
+			</div>
+		</div>
+	</div>
+
+	<script src='./lib/vue.js'></script>
+	<script src='./js/popup-vue.js'></script>
+</body>
+</html>

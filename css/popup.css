@@ -60,6 +60,7 @@ body {
 .list-container {
 	flex: 1;
 	overflow-y: auto;
+	overflow-x: hidden;
 	color: #4e4e4c;
 	background-color: #f6f6f6;
 }
@@ -70,9 +71,9 @@ body {
 	line-height: 41px;
 	border-bottom: 1px solid #dcdfe4;
 }
-.list-container .li .list:last-child {
+/*.list-container .li .list:last-child {
 	border-bottom: none;
-}
+}*/
 .list-container .li .list .status,
 .input-container .status {
 	display: flex;
@@ -159,7 +160,7 @@ body {
 
 /* list actions */
 .list-container .li .actions {
-	display: none; /* toggle to: flex */
+	display: flex; /* toggle to: flex */
 	height: 30px;
 	line-height: 30px;
 	text-align: center;
