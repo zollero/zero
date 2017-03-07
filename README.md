@@ -1,5 +1,7 @@
 # todo-chrome
-Chrome extension
+
+An chrome extension to manage daily todo list.
+
 
 ## LICENSE
 
