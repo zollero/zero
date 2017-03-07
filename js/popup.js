@@ -1,5 +1,3 @@
-
-
 /*!
  * z-todo  - https://github.com/zollero/todo-chrome
  * Version - 1.0.0
