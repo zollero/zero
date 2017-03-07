@@ -2,16 +2,16 @@
 	"name": "Todo",
 	"version": "0.0.1",
 	"manifest_version": 2,
-	"description": "Chrome extension: Todo App",
+	"description": "An extension to manage todo list.",
 	"icons": {
-        "16": "images/icon19.png",
-        "48": "images/icon38.png",
-        "128": "images/icon38.png"
+        "16": "images/normal19.png",
+        "48": "images/normal48.png",
+        "128": "images/normal128.png"
     },
 	"browser_action": {
 		"default_icon": {
-	        "19": "images/icon19.png",
-	        "38": "images/icon38.png"
+	        "19": "images/normal19.png",
+	        "38": "images/normal38.png"
 	    },
 		"default_title": "Todo List",
 		"default_popup": "popup.html"

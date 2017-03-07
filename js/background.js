@@ -1,27 +1,24 @@
-// var notification = chrome.notifications.create("abc", { 
-// 	type: "basic", 
-// 	iconUrl: 'images/icon19.png', 
-// 	title: 'Notification Demo', 
-// 	message: 'Merry Christmas' 
-// }, function() {}); 
-
-// setTimeout(function() { 
-// 	chrome.notifications.clear("abc", function() {}); 
-// }, 5000); 
-
-// alert('1111')
+/*!
+ * z-todo  - https://github.com/zollero/todo-chrome
+ * Version - 1.0.0
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2017 zollero
+ */
+ 
+//TODO 默认查询今日需要添加的提醒
 
 
+/**
+ * Manage popup.html data routers
+ */
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-	// sendResponse(sender);
-	// var todo = message[0];
-	// var messageSender = message[1];
-	// sendResponse(message)
 	var type = message.type;
 	if(type === 'add') {
 		var todos = JSON.parse(localStorage.getItem(message.date));
 		if (!todos) todos = [];
 		todos.push(message.newTodo);
+		checkToAddNotice(message.newTodo);
 		localStorage.setItem(message.date, JSON.stringify(todos));
 		sendResponse(true);
 	} else if (type === 'getAll') {
@@ -30,7 +27,47 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 			todos = [];
 		}
 		sendResponse(todos);
+	} else if (type === 'save') {
+		localStorage.setItem(message.date, JSON.stringify(message.todos));
 	}
-	// sendResponse(true);
 });
 
+
+/**
+ * Check whether to add notice event listener on this todo.
+ */
+function checkToAddNotice(todo) {
+	if(todo && todo.setNotice) {
+		var time = todo.noticeTime.split(':');
+		var hour = time[0],
+			min = time[1];
+		var date = new Date();
+		date.setHours(Number(hour));
+		date.setMinutes(Number(min));
+		date.setSeconds(0);
+		var timeMin = date.getTime() - Date.now();
+		if (timeMin > 0) {
+			addNoticeEvent(timeMin, todo);
+		}
+	}
+}
+
+/**
+ * Add notice event on the todo
+ */
+function addNoticeEvent(milliseconds, todo) {
+	setTimeout(function() {
+		//TODO 判断当前todo是否已经完成，若未完成，则提醒，否则不提醒
+		var notification = chrome.notifications.create("abc", { 
+			type: "basic",
+			iconUrl: 'images/icon38.png',
+			priority: 2,
+			eventTime: 2000,
+			title: 'Notice',
+			message: todo.message
+		});
+		// setTimeout(function() { 
+		// 	chrome.notifications.clear("abc", function() {}); 
+		// }, 5000); 
+	}, milliseconds);
+}

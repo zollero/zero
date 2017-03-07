@@ -72,6 +72,7 @@
 				this.getTodods();
 			},
 			saveNewTodo: function(newTodo) {
+				console.log(newTodo);
 				var _this = this;
 				chrome.runtime.sendMessage({
 					type: 'add',
@@ -80,6 +81,7 @@
 				}, function(response) {
 					console.log(response);
 					if(response) {
+						newTodo.showAction = false;
 						_this.todos.push(newTodo);
 					}
 				});
@@ -96,16 +98,17 @@
 						setNotice: this.setNotice,
 						noticeTime: this.setNotice ? this.noticeHour + ':' + this.noticeMin : ''
 					};
+					this.saveNewTodo(newTodo);
 					this.inputVal = '';
 					this.setNotice = false;
 					this.showDateSelect = false;
 					this.noticeHour = 0;
 					this.noticeMin = 0;
-					this.saveNewTodo(newTodo);
-					this.getTodods();
+					// this.getTodods();
 				}
 			},
 			changeStatus: function(currentStatus, currentTodo) {
+				var _this = this;
 				if (currentStatus === 'on') {
 					currentTodo.status = 'done';
 				} else if (currentStatus === 'done') {
@@ -113,11 +116,21 @@
 				} else if (currentStatus === 'undone') {
 					currentTodo.status = 'on';
 				}
-				localStorage.setItem(this.currentDate, JSON.stringify(this.todos));
+				chrome.runtime.sendMessage({
+					type: 'save',
+					date: _this.currentDate,
+					todos: _this.todos
+				});
 			},
 			deleteTodo: function(index) {
-				this.todos.pop(index);
-				localStorage.setItem(this.currentDate, JSON.stringify(this.todos));
+				var _this = this;
+				console.log(index);
+				_this.todos.splice(index, 1);
+				chrome.runtime.sendMessage({
+					type: 'save',
+					date: _this.currentDate,
+					todos: _this.todos
+				});
 			},
 			turnPre: function() {
 				var date = this.getCurrentDate();
