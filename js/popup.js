@@ -13,6 +13,8 @@
 	
 	'use strict';
 
+	var weekObj = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'];
+
 	var todoApp = new Vue({
 		el: '#todo-list-container',
 		data: {
@@ -29,32 +31,7 @@
 			selectedDate: function() {
 				var date = this.getCurrentDate();
 				var day = date.getDay();
-
-				switch(day) {
-					case 0:
-						day = 'Sun.';
-						break;
-					case 1:
-						day = 'Mon.';
-						break;
-					case 2:
-						day = 'Tue.';
-						break;
-					case 3:
-						day = 'Wed.';
-						break;
-					case 4:
-						day = 'Thu.';
-						break;
-					case 5:
-						day = 'Fri.';
-						break;
-					case 6:
-						day = 'Sat.';
-						break;
-					default:
-						break;
-				}
+				day = weekObj[day];
 				return '<b>' + day + '</b>' + ' ' + this.currentDate;
 			}
 		},
@@ -77,26 +54,35 @@
 				this.currentDate = today;
 			},
 			getTodods: function() {
-				var todos = JSON.parse(localStorage.getItem(this.currentDate));
-				if (todos !== null && todos.length) {
-					todos.map(function(v, i) {
+				var _this = this;
+				chrome.runtime.sendMessage({ 
+					type: 'getAll', 
+					date: _this.currentDate
+				}, function(response) {
+					if(!response.map) return;
+					response.map(function(v, i) {
 						v.showAction = false;
 						return v;
 					});
-				} else {
-					todos = [];
-				}
-				this.todos = todos;
+					_this.todos = response;
+				});
 			},
 			init: function() {
 				this.initDate();
 				this.getTodods();
 			},
 			saveNewTodo: function(newTodo) {
-				var todos = JSON.parse(localStorage.getItem(this.currentDate));
-				if (!todos) todos = [];
-				todos.push(newTodo);
-				localStorage.setItem(this.currentDate, JSON.stringify(todos));
+				var _this = this;
+				chrome.runtime.sendMessage({
+					type: 'add',
+					date: _this.currentDate,
+					newTodo: newTodo
+				}, function(response) {
+					console.log(response);
+					if(response) {
+						_this.todos.push(newTodo);
+					}
+				});
 			},
 			typeNewTask: function(e) {
 				var inputVal = this.inputVal.trim();
