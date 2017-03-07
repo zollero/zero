@@ -209,6 +209,7 @@ body {
 .input-container .notice-select {
 	display: flex;
 	height: 30px;
+	border-bottom: 1px solid #dcdfe4;
 }
 .input-container .notice-select .notice-icon {
     width: 41px;

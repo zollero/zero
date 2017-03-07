@@ -52,16 +52,6 @@
 			</li>
 		</ul>
 		<div class="input-container" v-if="today === currentDate">
-			<div class="li">
-				<div class="status">
-					<div class="icon-container">
-						<i class="icon"></i>
-					</div>
-				</div>
-				<div class="content">
-					<input type="text" placeholder="Type a new task, then Enter" @keyup="typeNewTask" v-model="inputVal">
-				</div>
-			</div>
 			<transition name="custom-classes-transition"
 				    enter-active-class="animated flipInX"
 				    leave-active-class="animated flipOutX" >
@@ -80,6 +70,16 @@
 					</div>
 				</div>
 			</transition>
+			<div class="li">
+				<div class="status">
+					<div class="icon-container">
+						<i class="icon"></i>
+					</div>
+				</div>
+				<div class="content">
+					<input type="text" placeholder="Type a new task, then Enter" @keyup="typeNewTask" v-model="inputVal">
+				</div>
+			</div>
 		</div>
 	</div>
 
