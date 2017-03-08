@@ -28,6 +28,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	height: 400px;
+	background-color: #f6f6f6;
 }
 
 /* banner */
@@ -42,11 +43,6 @@ body {
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
     box-shadow: 0 1px 4px 0px #23262f;
-}
-.banner-btn {
-	/*width: 20px;*/
-	/*height: 20px;
-	border-radius: 50%;*/
 }
 
 .banner .center {
@@ -182,6 +178,9 @@ body {
 }
 
 /* input container */
+.input-container .li {
+	border-bottom: none;
+}
 .input-container .status .icon-container  {
 	box-shadow: inset 0 1px 1px 0px #d7d7d7;
 }

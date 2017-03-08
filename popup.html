@@ -51,36 +51,40 @@
 				<div class="tip">There are no todos.</div>
 			</li>
 		</ul>
-		<div class="input-container" v-if="today === currentDate">
-			<transition name="custom-classes-transition"
+		<transition name="custom-classes-transition"
 				    enter-active-class="animated flipInX"
 				    leave-active-class="animated flipOutX" >
-				<div class="notice-select" v-if="showDateSelect">
-					<div class="notice-icon">
-						<i class="iconfont icon-notice" :class="{ disabled: setNotice }" @click="setNotice = !setNotice"></i>
+			<div class="input-container" v-if="today === currentDate">
+				<transition name="custom-classes-transition"
+					    enter-active-class="animated bounceIn"
+					    leave-active-class="animated bounceOut" >
+					<div class="notice-select" v-if="showDateSelect">
+						<div class="notice-icon">
+							<i class="iconfont icon-notice" :class="{ disabled: setNotice }" @click="setNotice = !setNotice"></i>
+						</div>
+						<div class="date-select">
+							<select v-model="noticeHour" :disabled="!setNotice">
+								<option v-for="hour in 24" :value="hour - 1">{{ hour - 1 }}</option>
+							</select>
+							<span class="time-split">:</span>
+							<select v-model="noticeMin" :disabled="!setNotice">
+								<option v-for="min in 60" :value="min - 1">{{ min - 1 }}</option>
+							</select>
+						</div>
 					</div>
-					<div class="date-select">
-						<select v-model="noticeHour" :disabled="!setNotice">
-							<option v-for="hour in 24" :value="hour - 1">{{ hour - 1 }}</option>
-						</select>
-						<span class="time-split">:</span>
-						<select v-model="noticeMin" :disabled="!setNotice">
-							<option v-for="min in 60" :value="min - 1">{{ min - 1 }}</option>
-						</select>
+				</transition>
+				<div class="li">
+					<div class="status">
+						<div class="icon-container">
+							<i class="icon"></i>
+						</div>
 					</div>
-				</div>
-			</transition>
-			<div class="li">
-				<div class="status">
-					<div class="icon-container">
-						<i class="icon"></i>
+					<div class="content">
+						<input type="text" placeholder="Type a new task, then Enter" @keyup="typeNewTask" v-model="inputVal">
 					</div>
-				</div>
-				<div class="content">
-					<input type="text" placeholder="Type a new task, then Enter" @keyup="typeNewTask" v-model="inputVal">
 				</div>
 			</div>
-		</div>
+		</transition>
 	</div>
 
 	<script src='./lib/vue.js'></script>
