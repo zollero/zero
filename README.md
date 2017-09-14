@@ -24,6 +24,7 @@ If you wanna to custom this extension, you can fork this repo.
 
 ## Todo list
 
+* 导出记录
 * todo list图表分析
 * 大数据分析，提供改善习惯的建议
 
