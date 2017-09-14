@@ -4,26 +4,26 @@
 	"manifest_version": 2,
 	"description": "An extension to manage todo list.",
 	"icons": {
-        "16": "images/normal19.png",
-        "48": "images/normal48.png",
-        "128": "images/normal128.png"
-    },
+    "16": "images/normal19.png",
+    "48": "images/normal48.png",
+    "128": "images/normal128.png"
+  },
 	"browser_action": {
 		"default_icon": {
-	        "19": "images/normal19.png",
-	        "38": "images/normal38.png"
+        "19": "images/normal19.png",
+        "38": "images/normal38.png"
 	    },
 		"default_title": "Todo List",
 		"default_popup": "popup.html"
 	},
 	"permissions": [
-        "tabs",
-        "activeTab",
-        "notifications",
-        "storage",
-        "unlimitedStorage"
-    ],
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "tabs",
+    "activeTab",
+    "notifications",
+    "storage",
+    "unlimitedStorage"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 	"options_page": "options.html",
 	"background": {
 		"scripts": ["js/background.js"]
