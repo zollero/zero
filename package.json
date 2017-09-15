@@ -7,12 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "dev:mock": "npm run dev mock",
-    "start": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "build:debug": "cross-env NODE_ENV=development npm run build",
-    "build:publish": "cross-env NODE_ENV=production npm run build"
+    "build": "node build/build.js"
   },
   "repository": {
     "type": "git",

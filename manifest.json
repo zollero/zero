@@ -1,6 +1,6 @@
 {
 	"name": "Todo",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"manifest_version": 2,
 	"description": "An extension to manage todo list.",
 	"icons": {
@@ -14,7 +14,7 @@
         "38": "images/normal38.png"
 	    },
 		"default_title": "Todo List",
-		"default_popup": "popup.html"
+		"default_popup": "./dist/index.html"
 	},
 	"permissions": [
     "tabs",
