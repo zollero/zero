@@ -5,8 +5,11 @@
  *
  * Copyright (c) 2017 zollero
  */
- 
+
 //TODO 默认查询今日需要添加的提醒
+
+// check chrome.notification permission
+
 
 
 /**
@@ -58,16 +61,30 @@ function checkToAddNotice(todo) {
 function addNoticeEvent(milliseconds, todo) {
 	setTimeout(function() {
 		//TODO 判断当前todo是否已经完成，若未完成，则提醒，否则不提醒
-		var notification = chrome.notifications.create("abc", { 
+		var notification = chrome.notifications.create("abc", {
 			type: "basic",
 			iconUrl: 'images/icon38.png',
 			priority: 2,
-			eventTime: 2000,
+			eventTime: 10000,
 			title: 'Notice',
 			message: todo.message
 		});
-		// setTimeout(function() { 
-		// 	chrome.notifications.clear("abc", function() {}); 
-		// }, 5000); 
+		// setTimeout(function() {
+		// 	chrome.notifications.clear("abc", function() {});
+		// }, 5000);
 	}, milliseconds);
+}
+
+function checkNotification() {
+	if (!(Notification in window)) {
+		alert('The browser does not support desktop notification.')
+	} else if (Notification.permission === 'granted') {
+		new Notification('Granted');
+	} else if (Notification.permission !== 'denied') {
+		Notification.requestPermission(function(permission) {
+			if (permission === 'granted') {
+				new Notification('Request granted!')
+			}
+		})
+	}
 }
