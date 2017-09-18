@@ -217,6 +217,9 @@
         this.currentDate = currentDate;
         this.getTodods();
       }
+    },
+    mounted() {
+      this.init()
     }
   }
 </script>
