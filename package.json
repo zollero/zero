@@ -1,5 +1,5 @@
 {
-  "name": "todo-chrome",
+  "name": "zero",
   "version": "0.0.2",
   "description": "An lightweight chrome extension to manage daily todo list.",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zollero/todo-chrome.git"
+    "url": "git+https://github.com/zollero/zero.git"
   },
   "author": "zollero <corona7@163.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zollero/todo-chrome/issues"
+    "url": "https://github.com/zollero/zero/issues"
   },
-  "homepage": "https://github.com/zollero/todo-chrome#readme",
+  "homepage": "https://github.com/zollero/zero#readme",
   "dependencies": {
     "vue": "^2.4.4",
     "vue-router": "^2.3.1",
