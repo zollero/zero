@@ -9,12 +9,12 @@
         <div class="status">
           <div class="icon-container">
             <i class="icon" @click="changeStatus(todo.status, todo)">
-              {{ todo.status === 'done' ? '&#10003' : '' }}
+              <!-- {{ todo.status === 'done' ? '&#10003' : '' }} -->
             </i>
           </div>
         </div>
         <div class="content" :title="todo.message" @click="toggleAction(todo)">
-          {{ todo.message }}
+          &nbsp;{{ todo.message }}&nbsp;&nbsp;
         </div>
         <!-- <div class="notice">
           <i class="iconfont icon-notice" :class="{ disabled: !todo.setNotice }"></i>

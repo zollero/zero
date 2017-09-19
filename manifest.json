@@ -1,19 +1,19 @@
 {
-	"name": "Todo",
+	"name": "Z Todo List",
 	"version": "0.0.2",
 	"manifest_version": 2,
 	"description": "An extension to manage todo list.",
 	"icons": {
-    "16": "images/normal19.png",
-    "48": "images/normal48.png",
-    "128": "images/normal128.png"
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
   },
 	"browser_action": {
 		"default_icon": {
-        "19": "images/normal19.png",
-        "38": "images/normal38.png"
+        "19": "icons/icon-19.png",
+        "38": "icons/icon-38.png"
 	    },
-		"default_title": "Todo List",
+		"default_title": "Z Todo List",
 		"default_popup": "./dist/index.html"
 	},
 	"permissions": [
