@@ -1,9 +1,9 @@
 /*!
  * z-todo  - https://github.com/zollero/todo-chrome
- * Version - 1.0.0
+ * Version - 0.0.2
  * Licensed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Copyright (c) 2017 zollero
+ * Copyright (c) 2017 zollero <corona7@163.com>
  */
 
 //TODO 默认查询今日需要添加的提醒

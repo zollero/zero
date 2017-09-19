@@ -11,7 +11,7 @@
       enter-active-class="animated flipInX"
       leave-active-class="animated flipOutX" >
       <div class="input-container" v-if="today === currentDate">
-        <transition name="custom-classes-transition"
+        <!-- <transition name="custom-classes-transition"
           enter-active-class="animated bounceIn"
           leave-active-class="animated bounceOut" >
           <div class="notice-select" v-if="showDateSelect">
@@ -29,7 +29,7 @@
               </select>
             </div>
           </div>
-        </transition>
+        </transition> -->
         <div class="li">
           <div class="status">
             <div class="icon-container">

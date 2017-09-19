@@ -16,17 +16,17 @@
         <div class="content" :title="todo.message" @click="toggleAction(todo)">
           {{ todo.message }}
         </div>
-        <div class="notice">
+        <!-- <div class="notice">
           <i class="iconfont icon-notice" :class="{ disabled: !todo.setNotice }"></i>
-        </div>
+        </div> -->
       </div>
       <transition name="custom-classes-transition"
-          enter-active-class="animated swing"
-          leave-active-class="animated flipOutY" >
+        enter-active-class="animated swing"
+        leave-active-class="animated flipOutY" >
         <div class="actions" v-if="todo.showAction">
-          <div class="action" v-if="!todo.setNotice">
+          <!-- <div class="action" v-if="!todo.setNotice">
             <i class="iconfont icon-notice"></i>
-          </div>
+          </div> -->
           <div class="action" @click="deleteTodo(index)">
             <i class="iconfont icon-delete"></i>
           </div>
@@ -54,11 +54,6 @@
           const date = new Date();
           return date.getFullYear() + '.' + (date.getMonth() + 1) + '.' + date.getDate()
         }
-      }
-    },
-    watch: {
-      data: function(value) {
-        console.log(this.data)
       }
     },
     methods: {
