@@ -6,52 +6,18 @@
       <div class="center" v-html="selectedDate"></div>
       <i class="iconfont icon-right" @click="turnPost"></i>
     </div>
-    <ul class="list-container" v-if="todos.length > 0">
-      <li class="li" v-for="(todo, index) in todos" :key="index">
-        <div class="list" v-bind:class="todo.status">
-          <div class="status">
-            <div class="icon-container">
-              <i class="icon" @click="changeStatus(todo.status, todo)">
-                {{ todo.status === 'done' ? '&#10003' : '' }}
-              </i>
-            </div>
-          </div>
-          <div class="content" :title="todo.message" @click="toggleAction(todo)">
-            {{ todo.message }}
-          </div>
-          <div class="notice">
-            <i class="iconfont icon-notice" :class="{ disabled: !todo.setNotice }"></i>
-          </div>
-        </div>
-        <transition name="custom-classes-transition"
-            enter-active-class="animated swing"
-            leave-active-class="animated flipOutY" >
-          <div class="actions" v-if="todo.showAction">
-            <div class="action" v-if="!todo.setNotice">
-              <i class="iconfont icon-notice"></i>
-            </div>
-            <div class="action" @click="deleteTodo(index)">
-              <i class="iconfont icon-delete"></i>
-            </div>
-          </div>
-        </transition>
-      </li>
-    </ul>
-    <ul class="list-container" v-else>
-      <li class="li">
-        <div class="tip">There are no todos.</div>
-      </li>
-    </ul>
+    <todo-list :data="todos" :current-date="currentDate"></todo-list>
     <transition name="custom-classes-transition"
-            enter-active-class="animated flipInX"
-            leave-active-class="animated flipOutX" >
+      enter-active-class="animated flipInX"
+      leave-active-class="animated flipOutX" >
       <div class="input-container" v-if="today === currentDate">
         <transition name="custom-classes-transition"
-              enter-active-class="animated bounceIn"
-              leave-active-class="animated bounceOut" >
+          enter-active-class="animated bounceIn"
+          leave-active-class="animated bounceOut" >
           <div class="notice-select" v-if="showDateSelect">
             <div class="notice-icon">
-              <i class="iconfont icon-notice" :class="{ disabled: setNotice }" @click="setNotice = !setNotice"></i>
+              <i class="iconfont icon-notice" :class="{ disabled: setNotice }"
+                @click="setNotice = !setNotice"></i>
             </div>
             <div class="date-select">
               <select v-model="noticeHour" :disabled="!setNotice">
@@ -71,7 +37,8 @@
             </div>
           </div>
           <div class="content">
-            <input type="text" placeholder="Type a new task, then Enter" @keyup="typeNewTask" v-model="inputVal">
+            <input type="text" placeholder="Type a new task, then Enter"
+              @keyup="typeNewTask" v-model="inputVal">
           </div>
         </div>
       </div>
@@ -80,12 +47,15 @@
 </template>
 
 <script>
+  import todoList from '@/components/todo-list'
   var weekObj = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'];
-  console.log(window.chrome)
 
   const chrome = window.chrome
 
   export default {
+    components: {
+      todoList
+    },
     data() {
       return {
         today: '',
@@ -115,9 +85,6 @@
       },
       formatDate: function(date) {
         return date.getFullYear() + '.' + (date.getMonth() + 1) + '.' + date.getDate();
-      },
-      toggleAction: function(todo) {
-        todo.showAction = !todo.showAction;
       },
       initDate: function() {
         var today = this.formatDate(new Date());
@@ -175,33 +142,7 @@
           this.showDateSelect = false;
           this.noticeHour = 0;
           this.noticeMin = 0;
-          // this.getTodods();
         }
-      },
-      changeStatus: function(currentStatus, currentTodo) {
-        var _this = this;
-        if (currentStatus === 'on') {
-          currentTodo.status = 'done';
-        } else if (currentStatus === 'done') {
-          currentTodo.status = 'on';
-        } else if (currentStatus === 'undone') {
-          currentTodo.status = 'on';
-        }
-        chrome.runtime.sendMessage({
-          type: 'save',
-          date: _this.currentDate,
-          todos: _this.todos
-        });
-      },
-      deleteTodo: function(index) {
-        var _this = this;
-        console.log(index);
-        _this.todos.splice(index, 1);
-        chrome.runtime.sendMessage({
-          type: 'save',
-          date: _this.currentDate,
-          todos: _this.todos
-        });
       },
       turnPre: function() {
         var date = this.getCurrentDate();
