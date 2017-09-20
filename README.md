@@ -1,5 +1,10 @@
 # Zero
 
+![](https://img.shields.io/badge/zero-v0.0.2-09A599.svg)
+![](https://img.shields.io/badge/vue-v2-42b983.svg)
+![](https://img.shields.io/badge/chrome%20web%20store-v0.0.2-1081c2.svg)
+
+
 An light chrome extension to manage daily TODO list.
 
 Zero is writeen with Vue2, and build by webpack.The whole files are build in folder `zero`.
