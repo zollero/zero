@@ -16,6 +16,12 @@ Zero is writeen with Vue2, and build by webpack.The whole files are build in fol
 * Store historical TODO List;
 * Delete a TODO.
 
+## Screen shots
+
+![](./screenshots/zero-chrome-screenshot2.png)
+![](./screenshots/zero-chrome-screenshot3.png)
+![](./screenshots/zero-chrome-screenshot4.png)
+
 ## Install
 
 1.Clone the code
