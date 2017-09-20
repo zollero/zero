@@ -5,3 +5,5 @@ yarn-debug.log*
 yarn-error.log*
 .vscode/
 .idea/
+*.pem
+*.ctx

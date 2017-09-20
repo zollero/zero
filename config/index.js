@@ -5,8 +5,8 @@ isProd = true
 module.exports = {
   build: {
     env: isProd ? require('./prod.env') : require('./test.env'),
-    index: path.resolve(__dirname, '../dist/index.html'),
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    index: path.resolve(__dirname, '../zero/index.html'),
+    assetsRoot: path.resolve(__dirname, '../zero'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
     productionSourceMap: true,
