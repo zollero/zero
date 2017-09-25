@@ -73,6 +73,9 @@
         var date = this.getCurrentDate();
         var day = date.getDay();
         day = weekObj[day];
+        if (this.today === this.currentDate) {
+          return '<b>Today</b>'
+        }
         return '<b>' + day + '</b>' + ' ' + this.currentDate;
       }
     },
@@ -98,9 +101,15 @@
           date: _this.currentDate
         }, function(response) {
           if (!response.map) return;
-          response.map(function(v, i) {
+          response.forEach((v, i) => {
             v.showAction = false;
-            return v;
+          })
+          response.sort((a, b) => {
+            if (a.status === 'done') {
+              return 1;
+            } else {
+              return -1;
+            }
           });
           _this.todos = response;
         });

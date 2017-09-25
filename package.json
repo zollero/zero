@@ -1,6 +1,6 @@
 {
   "name": "zero",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "An lightweight chrome extension to manage daily todo list.",
   "main": "index.js",
   "directories": {
